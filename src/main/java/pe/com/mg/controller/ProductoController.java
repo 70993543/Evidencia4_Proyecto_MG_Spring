@@ -2,6 +2,7 @@ package pe.com.mg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,12 @@ public class ProductoController {
     private CategoriaService categoriaservicio;
 
     @GetMapping("/listarproducto")
-    public String PaginaListarProducto(Model modelo){
-        modelo.addAttribute("productos", productoservicio.findAllCustom());
+    public String PaginaListarProducto(Model modelo, @Param("palabraclave") String palabraclave){
+         //String palabraclave = "Detergente";
+        modelo.addAttribute("palabraclave", palabraclave);
+        modelo.addAttribute("productos", productoservicio.findAllCustom(palabraclave));
         return "listarproducto";
+
     }
 
     @GetMapping("/registroproducto")

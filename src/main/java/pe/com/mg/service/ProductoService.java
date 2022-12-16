@@ -10,6 +10,6 @@ public interface ProductoService {
     ProductoEntity add(ProductoEntity p);
     ProductoEntity update(ProductoEntity p);
     ProductoEntity delete(ProductoEntity p);
-    List<ProductoEntity> findAllCustom();
+    List<ProductoEntity> findAllCustom(String palaabraclave);
     ProductoEntity enable(ProductoEntity p);
 }

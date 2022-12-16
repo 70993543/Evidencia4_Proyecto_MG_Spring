@@ -44,8 +44,11 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public List<ProductoEntity> findAllCustom() {
-        return productorepositorio.findAllCustom();
+    public List<ProductoEntity> findAllCustom(String palabraclave) {
+        if (palabraclave != null){
+            return productorepositorio.findAllCustom(palabraclave);
+        }
+        return productorepositorio.findAllCustom(palabraclave);
     }
 
     @Override

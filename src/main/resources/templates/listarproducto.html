@@ -16,41 +16,80 @@
       Se registro correctamente
     </div>
   </div>
+    <div class="col-md-6 d-flex">
+      <div class="">
+        <a th:href="@{/registroproducto}" class="btn btn-primary mb-2 ml-2">Agregar</a>
+      </div>
+      <div class="mx-3">
+        <a th:href="@{/habilitarproducto}" class="btn btn-info mb-2 text-white">Habilitar</a>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <form class="mx-3" th:action="@{/listarproducto}">
+        <div class="input-group">
+          <div class="form-outline">
+            <input class="form-control" type="search" id="palabraclave" name="palabraclave" placeholder="Search" th:value="${palabraclave}">
+          </div>
+          <button type="submit" value="Buscar" class="btn btn-dark">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+      </form>
+      <div>
+        <button type="button" value="Limpiar" class="btn btn-secondary" onclick="limpiarcampos()">Limpiar</button>
+      </div>
+    </div>
+
   <div class="col-md-12">
-    <a th:href="@{/registroproducto}" class="btn btn-primary mb-2">Agregar</a>
-    <a th:href="@{/habilitarproducto}" class="btn btn-info mb-2 text-white">Habilitar</a>
-    <h1>Lista de productos</h1>
-    <div class="table-responsive">
-      <table class="table align-middle table-bordered">
-        <thead class="table-dark">
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Marca</th>
-        <th>Precio</th>
-        <th>Categoria</th>
-        <th>Estado</th>
-        <th>Acciones</th>
-        </thead>
-        <tbody>
-        <tr th:each="producto : ${productos}">
-          <td th:text="${producto.codigo}"></td>
-          <td th:text="${producto.nombre}"></td>
-          <td th:text="${producto.marca}"></td>
-          <td th:text="${producto.precio}"></td>
-          <td th:text="${producto.categoria.nombre}"></td>
-          <td th:text="${producto.estado}? 'Habilitado':'Deshabilitado'"></td>
-          <td class="d-flex flex-grap justify-content-between">
-            <a class="btn btn-success" th:href="@{/actualizarproducto/{id}(id=${producto.codigo})}">Actualizar</a>
-            <a th:href="@{/eliminarproducto/{id}(id=${producto.codigo})}" class="btn btn-danger">Eliminar</a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+
+
+<!--        <form class="form-inline" th:action="@{/listarproducto}">-->
+<!--          <div class="form-group mb-2">-->
+<!--            <label>Filtrar : </label>-->
+<!--          </div>-->
+<!--          <div class="form-group sm-3 mb-2">-->
+<!--            <input type="text" name="palabraclave" class="form-control" id="palabraclave" th:value="${palabraclave}" placeholder="Digite el valor a buscar" required>-->
+<!--          </div>-->
+<!--          <input type="submit" class="btn btn-info mb-2" value="Buscar">-->
+<!--          <input type="submit" class="btn btn-secondary mb-2" value="Limpiar">-->
+<!--        </form>-->
+
+
+      <div class="table-responsive">
+        <table class="table align-middle table-bordered">
+          <tr>
+            <td colspan="7" class="text-center h2">LISTA DE CLIENTES</td>
+          </tr>
+          <tr class="table-dark">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Precio</th>
+          <th>Categoria</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+          </tr>
+          <tbody>
+          <tr th:each="producto : ${productos}">
+            <td th:text="${producto.codigo}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.marca}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td th:text="${producto.categoria.nombre}"></td>
+            <td th:text="${producto.estado}? 'Habilitado':'Deshabilitado'"></td>
+            <td class="d-flex flex-grap justify-content-between">
+              <a class="btn btn-success" th:href="@{/actualizarproducto/{id}(id=${producto.codigo})}">Actualizar</a>
+              <a th:href="@{/eliminarproducto/{id}(id=${producto.codigo})}" class="btn btn-danger">Eliminar</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>
-
 <footer th:replace="layout/layout :: footer"></footer>
-
+<script src="../static/Script.js" th:src="@{/Script.js}"></script>
 </body>
 </html>
