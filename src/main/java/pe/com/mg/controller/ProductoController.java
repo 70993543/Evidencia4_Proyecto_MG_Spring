@@ -46,6 +46,7 @@ public class ProductoController {
 
     @GetMapping("/actualizarproducto/{id}")
     public String MostrarFormularioActualizar(@PathVariable long id, Model modelo){
+        modelo.addAttribute("categorias", categoriaservicio.findAll());
         modelo.addAttribute("productos", productoservicio.findById(id));
         return "actualizarproducto";
     }
