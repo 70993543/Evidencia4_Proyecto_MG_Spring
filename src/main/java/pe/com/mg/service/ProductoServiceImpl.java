@@ -4,7 +4,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.mg.model.ProductoEntity;
+import pe.com.mg.repository.EmpleadoRepository;
 import pe.com.mg.repository.ProductoRepository;
+
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
     private ProductoRepository productorepositorio;
+    @Autowired
+    private EmpleadoRepository empleadoRepository;
+
 
     @Override
     public List<ProductoEntity> findAll() {

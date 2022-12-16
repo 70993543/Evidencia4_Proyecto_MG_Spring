@@ -2,6 +2,7 @@ package pe.com.mg.service;
 
 import pe.com.mg.model.ProductoEntity;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface ProductoService {

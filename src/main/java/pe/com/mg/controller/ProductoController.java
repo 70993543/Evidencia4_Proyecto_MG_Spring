@@ -1,17 +1,18 @@
 package pe.com.mg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pe.com.mg.model.ProductoEntity;
 import pe.com.mg.service.CategoriaService;
 import pe.com.mg.service.ProductoService;
+import pe.com.mg.util.PageRender;
+
+import java.awt.print.Pageable;
 
 @Controller
 public class ProductoController {
@@ -24,7 +25,6 @@ public class ProductoController {
 
     @GetMapping("/listarproducto")
     public String PaginaListarProducto(Model modelo, @Param("palabraclave") String palabraclave){
-         //String palabraclave = "Detergente";
         modelo.addAttribute("palabraclave", palabraclave);
         modelo.addAttribute("productos", productoservicio.findAllCustom(palabraclave));
         return "listarproducto";
