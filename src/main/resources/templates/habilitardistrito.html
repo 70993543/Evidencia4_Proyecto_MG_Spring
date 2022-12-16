@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+
+<nav th:replace="layout/layout :: nav"></nav>
+
+<div class="row m-4">
+    <div th:if="${param.correcto}">
+        <div class="alert alert-success" role="alert">
+            Se registro correctamente
+        </div>
+    </div>
+    <div class="col-md-12">
+        <a th:href="@{/listardistrito}" class="btn btn-secondary mb-2">regresar</a>
+        <h1>Lista de distritos</h1>
+        <div class="table-responsive">
+            <table class="table align-middle table-bordered">
+                <thead class="table-dark">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                </thead>
+                <tbody>
+                <tr th:each="distrito : ${distritos}" th:if="${distrito.estado != true}">
+                    <td th:text="${distrito.codigo}"></td>
+                    <td th:text="${distrito.nombre}"></td>
+                    <td th:text="${distrito.estado}? 'Habilitado':'Deshabilitado'"></td>
+                    <td class="d-flex flex-grap justify-content-between">
+                        <a class="btn btn-info text-white" th:href="@{/habilitardistrito/{id}(id=${distrito.codigo})}">Habilitar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

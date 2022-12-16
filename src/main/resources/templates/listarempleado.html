@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+  <nav th:replace="layout/layout :: nav"></nav>
+
+  <div class="row m-4">
+    <div class="col-md-12">
+      <a th:href="@{/registroempleado}" class="btn btn-primary">Agregar</a>
+      <h1>Lista de empleados</h1>
+      <div class="table-responsive">
+        <table class="table align-middle table-bordered">
+          <thead class="table-dark">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Acciones</th>
+          </thead>
+          <tbody>
+          <tr th:each="empleado : ${empleados}">
+            <td th:text="${empleado.codigo}"></td>
+            <td th:text="${empleado.nombre}"></td>
+            <td th:text="${empleado.apellido}"></td>
+            <td th:text="${empleado.email}"></td>
+            <td class="d-flex flex-grap justify-content-between">
+              <a class="btn btn-success" href="#">Actualizar</a>
+              <a href="#" class="btn btn-danger">Eliminar</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+
+<nav th:replace="layout/layout :: nav"></nav>
+
+<div class="row m-4">
+    <div th:if="${param.correcto}">
+        <div class="alert alert-success" role="alert">
+            Se registro correctamente
+        </div>
+    </div>
+    <div class="col-md-12">
+        <a th:href="@{/registrocategoria}" class="btn btn-primary mb-2">Agregar</a>
+        <a th:href="@{/habilitarcategoria}" class="btn btn-info mb-2 text-white">Habilitar</a>
+        <h1>Lista de categorias</h1>
+        <div class="table-responsive">
+            <table class="table align-middle table-bordered">
+                <thead class="table-dark">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                </thead>
+                <tbody>
+                <tr th:each="categoria : ${categorias}">
+                    <td th:text="${categoria.codigo}"></td>
+                    <td th:text="${categoria.nombre}"></td>
+                    <td th:text="${categoria.estado}? 'Habilitado':'Deshabilitado'"></td>
+                    <td class="d-flex flex-grap justify-content-between">
+                        <a class="btn btn-success" th:href="@{/actualizarcategoria/{id}(id=${categoria.codigo})}">Actualizar</a>
+                        <a th:href="@{/eliminarcategoria/{id}(id=${categoria.codigo})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

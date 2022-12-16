@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+
+<nav th:replace="layout/layout :: nav"></nav>
+
+<div class="row m-4">
+    <div th:if="${param.correcto}">
+        <div class="alert alert-success" role="alert">
+            Se registro correctamente
+        </div>
+    </div>
+    <div class="col-md-12">
+        <a th:href="@{/listarcliente}" class="btn btn-secondary mb-2">Retroceder</a>
+        <h1>Lista de clientes</h1>
+        <div class="table-responsive">
+            <table class="table align-middle table-bordered">
+                <thead class="table-dark">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Celular</th>
+                <th>Sexo</th>
+                <th>Dirección</th>
+                <th>Distrito</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                </thead>
+                <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.codigo}"></td>
+                    <td th:text="${cliente.nombre}"></td>
+                    <td th:text="${cliente.apellido}"></td>
+                    <td th:text="${cliente.celular}"></td>
+                    <td th:text="${cliente.sexo}"></td>
+                    <td th:text="${cliente.direccion}"></td>
+                    <td th:text="${cliente.distrito.nombre}"></td>
+                    <td th:text="${cliente.estado}? 'Habilitado':'Deshabilitado'"></td>
+                    <td class="d-flex flex-grap justify-content-between">
+                        <a class="btn btn-info text-white" th:href="@{/habilitarcliente/{id}(id=${cliente.codigo})}">Habilitar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

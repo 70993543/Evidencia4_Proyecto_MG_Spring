@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+
+  <nav th:replace="layout/layout :: nav"></nav>
+
+  <main class="container mt-3 d-flex justify-content-center">
+    <form class="border d-flex flex-column" style="width: 30rem" th:action="@{/registrocliente}" method="post" th:object="${cliente}">
+      <div class="mx-4 p-3">
+        <div class="text-center my-4">
+          <p class="h4 font-weight-bold"></p>
+        </div>
+
+        <div class="mb-3">
+          <label for="txtnom" class="form-label">Nombres</label>
+          <input type="text" class="form-control" id="txtnom" th:field="*{nombre}">
+        </div>
+        <div class="mb-3">
+          <label for="txtdis" class="form-label">Apellidos</label>
+          <input type="text" class="form-control" id="txtdis" th:field="*{apellido}">
+        </div>
+        <div class="mb-3">
+          <label for="txtcel" class="form-label">N° Celular</label>
+          <input type="text" class="form-control" id="txtcel" th:field="*{celular}">
+        </div>
+        <div class="">
+          <label class="form-label">Sexo</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" th:field="*{sexo}" type="radio" name="sexo" id="rbMas" value="Masculino">
+          <label class="form-check-label" for="rbMas">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" th:field="*{sexo}" type="radio" name="sexo" id="rbFem" value="Femenino">
+          <label class="form-check-label" for="rbFem">Femenino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" th:field="*{sexo}" type="radio" name="sexo" id="rbOtr" value="Otros">
+          <label class="form-check-label" for="RbOtr">Otros</label>
+        </div>
+        <div class="mb-3">
+          <label for="txtdir" class="form-label">Dirección:</label>
+          <input type="text" class="form-control" id="txtdir" th:field="*{direccion}">
+        </div>
+        <div class="mb-3">
+          <label for="cboCur" class="form-label">Distrito</label>
+          <select type="text" class="form-control"   name="" id="cboCur" th:field="*{distrito}" required>
+            <option value="">Seleccione un distrito</option>
+            <option value="" th:each="distrito:${distritos}" th:value="${distrito.codigo}" th:text="${distrito.nombre}"></option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="checkbox" class="form-check-input" id="chkEst" th:field="*{estado}">
+          <label for="chkEst" class="form-check-label">Habilitado</label>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-block btn-dark">Registrar</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

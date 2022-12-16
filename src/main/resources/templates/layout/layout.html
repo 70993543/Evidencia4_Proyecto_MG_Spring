@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#" th:href="@{/}">MG</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listarempleado}" >Empleado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rol</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listarcliente}">Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listardistrito}">Distrito</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listarproducto}">Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listarcategoria}">Categoria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">DetalleVentas</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{logout}">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<footer th:fragment="footer" class="fixed-bottom bg-dark text-white">
+    <div class="d-flex align-items-center justify-content-between mx-auto py-4 flex-wrap" style="width: 80%">
+        <a href="/static" class="d-flex align-items-center p-0" style="text-decoration: none">
+            <span class="ml-4 text-white mb-0 font-weight-bold">MG</span>
+        </a>
+        <small class="ml-2">&copy; MG, 2022. Todos los derechos reservados</small>
+    </div>
+</footer>
+</body>
+</html>

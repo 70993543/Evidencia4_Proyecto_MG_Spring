@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<nav th:replace="layout/layout :: nav"></nav>
+
+<main class="container mt-5 d-flex justify-content-center">
+  <form class="border d-flex flex-column" style="width: 30rem" th:action="@{/actualizardistrito/{id}(id=${distrito.codigo})}" method="post" th:object="${distritos}">
+    <div class="mx-4 p-3">
+      <div class="text-center my-4">
+        <p class="h4 font-weight-bold"></p>
+      </div>
+      <div class="mb-3">
+        <label for="txtcod" class="form-label">Codigo</label>
+        <input type="text" class="form-control" id="txtcod" readonly th:field="*{codigo}" th:value="${distritos.codigo}">
+      </div>
+      <div class="mb-3">
+        <label for="txtdis" class="form-label">Distrito</label>
+        <input type="text" class="form-control" id="txtdis" th:field="*{nombre}" th:value="${distritos.nombre}">
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="chkEst" th:field="*{estado}" th:value="${distritos.estado}">
+        <label for="chkEst" class="form-check-label">Habilitado</label>
+      </div>
+      <div class="d-grid">
+        <button class="btn btn-block btn-dark">Actualizar</button>
+      </div>
+    </div>
+  </form>
+</main>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

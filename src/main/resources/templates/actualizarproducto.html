@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thumeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/base">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+<nav th:replace="layout/layout :: nav"></nav>
+
+<main class="container mt-3 d-flex justify-content-center">
+  <form class="border d-flex flex-column" style="width: 30rem" th:action="@{/actualizarproducto/{id}(id=${producto.codigo})}" method="post" th:object="${productos}">
+    <div class="mx-4 p-3">
+      <div class="text-center my-4">
+        <p class="h4 font-weight-bold"></p>
+      </div>
+      <div class="mb-3">
+        <label for="txtcod" class="form-label">Nombre</label>
+        <input type="text" readonly class="form-control" id="txtcod" th:field="*{codigo}" th:value="${productos.codigo}">
+      </div>
+      <div class="mb-3">
+        <label for="txtnom" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="txtnom" th:field="*{nombre}" th:value="${productos.nombre}">
+      </div>
+      <div class="mb-3">
+        <label for="txtmar" class="form-label">Marca</label>
+        <input type="text" class="form-control" id="txtmar" th:field="*{marca}" th:value="${productos.marca}">
+      </div>
+      <div class="mb-3">
+        <label for="txtpre" class="form-label">Precio</label>
+        <input type="text" class="form-control" id="txtpre" th:field="*{precio}" th:value="${productos.precio}">
+      </div>
+      <div class="mb-3">
+        <label for="cboCat" class="form-label">Categoria</label>
+        <select type="text" class="form-control"   name="" id="cboCat" th:field="*{categoria}" required>
+          <option value="">Seleccione una categoria</option>
+          <option value="" th:each="categoria:${categorias}" th:value="${categoria.codigo}" th:text="${categoria.nombre}" ></option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="chkEst" th:field="*{estado}" th:value="${productos.estado}">
+        <label for="chkEst" class="form-check-label">Habilitado</label>
+      </div>
+      <div class="d-grid">
+        <button class="btn btn-block btn-success">Actualizar</button>
+      </div>
+    </div>
+  </form>
+</main>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
