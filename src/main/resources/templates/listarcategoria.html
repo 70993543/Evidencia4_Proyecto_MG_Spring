@@ -63,15 +63,17 @@
     </div>
 
     <div class="col-md-12">
-        <h1>Lista de categorias</h1>
         <div class="table-responsive">
             <table class="table align-middle table-bordered">
-                <thead class="table-dark">
+                <tr>
+                    <td colspan="5" class="text-center h2">LISTA DE CATEGORIAS</td>
+                </tr>
+                <tr class="table-dark">
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Estado</th>
                 <th colspan="2" class="text-center">Acciones </th>
-                </thead>
+                </tr>
                 <tbody>
                 <tr th:each="categoria : ${categorias}" th:if="${categoria.estado != false}" >
                     <td th:text="${categoria.codigo}"></td>

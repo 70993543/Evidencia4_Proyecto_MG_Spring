@@ -63,10 +63,12 @@
     </div>
 
     <div class="col-md-12">
-      <h1>Lista de clientes</h1>
       <div class="table-responsive">
         <table class="table align-middle table-bordered">
-          <thead class="table-dark">
+          <tr>
+            <td colspan="7" class="text-center h2">LISTA DE CLIENTES</td>
+          </tr>
+          <tr class="table-dark">
           <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
@@ -76,7 +78,7 @@
           <th>Distrito</th>
           <th>Estado</th>
           <th>Acciones</th>
-          </thead>
+          </tr>
           <tbody>
           <tr th:each="cliente : ${clientes}" th:if="${cliente.estado != false}">
             <td th:text="${cliente.codigo}"></td>

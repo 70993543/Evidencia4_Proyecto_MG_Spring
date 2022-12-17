@@ -11,16 +11,18 @@
   <div class="row m-4">
     <div class="col-md-12">
       <a th:href="@{/registroempleado}" class="btn btn-primary">Agregar</a>
-      <h1>Lista de empleados</h1>
       <div class="table-responsive">
         <table class="table align-middle table-bordered">
-          <thead class="table-dark">
+          <tr>
+            <td colspan="5" class="text-center h2">LISTA DE EMPLEADOS</td>
+          </tr>
+          <tr class="table-dark">
           <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo</th>
           <th>Acciones</th>
-          </thead>
+          </tr>
           <tbody>
           <tr th:each="empleado : ${empleados}">
             <td th:text="${empleado.codigo}"></td>

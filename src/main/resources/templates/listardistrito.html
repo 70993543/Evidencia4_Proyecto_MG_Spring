@@ -63,15 +63,17 @@
         </div>
 
         <div class="col-md-12">
-            <h1>Lista de distritos</h1>
             <div class="table-responsive">
                 <table class="table align-middle table-bordered">
-                    <thead class="table-dark">
+                    <tr>
+                        <td colspan="4" class="text-center h2">LISTA DE DISTRITOS</td>
+                    </tr>
+                    <tr class="table-dark">
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Estado</th>
                     <th>Acciones</th>
-                    </thead>
+                    </tr>
                     <tbody>
                     <tr th:each="distrito : ${distritos}" th:if="${distrito.estado != false}">
                         <td th:text="${distrito.codigo}"></td>
