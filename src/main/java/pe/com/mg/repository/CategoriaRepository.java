@@ -7,6 +7,6 @@ import pe.com.mg.model.CategoriaEntity;
 import java.util.List;
 
 public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Long> {
-    @Query("select c from CategoriaEntiry c where c.estado=1")
-    List<CategoriaEntity> findAllCustom();
+    @Query("select c from CategoriaEntiry c where c.estado=1"+" and c.nombre LIKE %?1%")
+    List<CategoriaEntity> findAllCustom(String palabraclave);
 }

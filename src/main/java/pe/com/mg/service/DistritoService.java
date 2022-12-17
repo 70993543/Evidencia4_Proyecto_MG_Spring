@@ -10,6 +10,6 @@ public interface DistritoService {
     DistritoEntity add(DistritoEntity d);
     DistritoEntity update(DistritoEntity d);
     DistritoEntity delete(DistritoEntity d);
-    List<DistritoEntity> findAllCustom();
+    List<DistritoEntity> findAllCustom(String palabraclave);
     DistritoEntity enable(DistritoEntity d);
 }

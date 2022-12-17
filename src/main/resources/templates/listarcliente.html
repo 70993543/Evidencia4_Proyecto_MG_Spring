@@ -12,13 +12,57 @@
 
   <div class="row m-4">
     <div th:if="${param.correcto}">
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         Se registro correctamente
+        <button type="button" class="btn-close btn-clean-cliente"  data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    </div>
+    <div th:if="${param.actualizo}">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Se actualizó correctamente
+        <button type="button" class="btn-close btn-clean-cliente"  data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     </div>
+    <div th:if="${param.elimino}">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Se eliminó correctamente
+        <button type="button" class="btn-close btn-clean-cliente" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+    <div th:if="${param.habilito}">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Se habilitó correctamente
+        <button type="button" class="btn-close btn-clean-cliente" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex">
+      <div class="">
+        <a th:href="@{/registrocliente}" class="btn btn-primary mb-2 ml-2">Agregar</a>
+      </div>
+      <div class="mx-3">
+        <a th:href="@{/habilitarcliente}" class="btn btn-info mb-2 text-white">Habilitar</a>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <form class="mx-3" th:action="@{/listarcliente}">
+        <div class="input-group">
+          <div class="form-outline">
+            <input class="form-control" type="search" id="palabraclave" name="palabraclave" placeholder="Search" th:value="${palabraclave}">
+          </div>
+          <button type="submit" value="Buscar" class="btn btn-dark">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+      </form>
+      <div>
+        <button type="button" value="Limpiar" class="btn btn-secondary btn-clean-cliente">Limpiar</button>
+      </div>
+    </div>
+
     <div class="col-md-12">
-      <a th:href="@{/registrocliente}" class="btn btn-primary mb-2">Agregar</a>
-      <a th:href="@{/habilitarcliente}" class="btn btn-info mb-2 text-white">Habilitar</a>
       <h1>Lista de clientes</h1>
       <div class="table-responsive">
         <table class="table align-middle table-bordered">
@@ -34,7 +78,7 @@
           <th>Acciones</th>
           </thead>
           <tbody>
-          <tr th:each="cliente : ${clientes}">
+          <tr th:each="cliente : ${clientes}" th:if="${cliente.estado != false}">
             <td th:text="${cliente.codigo}"></td>
             <td th:text="${cliente.nombre}"></td>
             <td th:text="${cliente.apellido}"></td>
@@ -55,6 +99,6 @@
   </div>
 
   <footer th:replace="layout/layout :: footer"></footer>
-
+  <script src="../static/js/cliente.js" th:src="@{/js/cliente.js}"></script>
 </body>
 </html>

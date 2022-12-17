@@ -7,7 +7,7 @@ import pe.com.mg.model.DistritoEntity;
 import java.util.List;
 
 public interface DistritoRepository extends JpaRepository<DistritoEntity, Long> {
-    @Query("select d from DistritoEntity d where d.estado=1")
-    List<DistritoEntity>findAllCustom();
+    @Query("select d from DistritoEntity d where d.estado=1"+" and d.nombre LIKE %?1%")
+    List<DistritoEntity>findAllCustom(String palabraclave);
 }
 

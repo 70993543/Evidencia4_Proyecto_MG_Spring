@@ -12,13 +12,57 @@
 
 <div class="row m-4">
     <div th:if="${param.correcto}">
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             Se registro correctamente
+            <button type="button" class="btn-close btn-clean-categoria"  data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    </div>
+    <div th:if="${param.actualizo}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Se actualizó correctamente
+            <button type="button" class="btn-close btn-clean-categoria"  data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
+    <div th:if="${param.elimino}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Se eliminó correctamente
+            <button type="button" class="btn-close btn-clean-categoria" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <div th:if="${param.habilito}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Se habilitó correctamente
+            <button type="button" class="btn-close btn-clean-categoria" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div class="col-md-6 d-flex">
+        <div class="">
+            <a th:href="@{/registrocategoria}" class="btn btn-primary mb-2 ml-2">Agregar</a>
+        </div>
+        <div class="mx-3">
+            <a th:href="@{/habilitarcategoria}" class="btn btn-info mb-2 text-white">Habilitar</a>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+        <form class="mx-3" th:action="@{/listarcategoria}">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input class="form-control" type="search" id="palabraclave" name="palabraclave" placeholder="Search" th:value="${palabraclave}">
+                </div>
+                <button type="submit" value="Buscar" class="btn btn-dark">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+        </form>
+        <div>
+            <button type="button" value="Limpiar" class="btn btn-secondary btn-clean-categoria">Limpiar</button>
+        </div>
+    </div>
+
     <div class="col-md-12">
-        <a th:href="@{/registrocategoria}" class="btn btn-primary mb-2">Agregar</a>
-        <a th:href="@{/habilitarcategoria}" class="btn btn-info mb-2 text-white">Habilitar</a>
         <h1>Lista de categorias</h1>
         <div class="table-responsive">
             <table class="table align-middle table-bordered">
@@ -29,7 +73,7 @@
                 <th colspan="2" class="text-center">Acciones </th>
                 </thead>
                 <tbody>
-                <tr th:each="categoria : ${categorias}">
+                <tr th:each="categoria : ${categorias}" th:if="${categoria.estado != false}" >
                     <td th:text="${categoria.codigo}"></td>
                     <td th:text="${categoria.nombre}"></td>
                     <td th:text="${categoria.estado}? 'Habilitado':'Deshabilitado'"></td>
@@ -45,6 +89,6 @@
 </div>
 
 <footer th:replace="layout/layout :: footer"></footer>
-
+<script src="../static/js/categoria.js" th:src="@{/js/categoria.js}"></script>
 </body>
 </html>

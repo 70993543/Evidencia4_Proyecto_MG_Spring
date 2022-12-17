@@ -10,7 +10,7 @@ public interface CategoriaService {
     CategoriaEntity add(CategoriaEntity c);
     CategoriaEntity update(CategoriaEntity c);
     CategoriaEntity delete(CategoriaEntity c);
-    List<CategoriaEntity> findAllCustom();
+    List<CategoriaEntity> findAllCustom(String palabraclave);
     CategoriaEntity enable(CategoriaEntity c);
 }
 

@@ -13,13 +13,15 @@
             <p class="h5 mt-2 py-4 font-weight-bold">Sign In</p>
         </div>
         <div th:if="${param.error}">
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Usuario o contraseña inválidos
+                <button type="button" class="btn-close btn-clean-login" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
         <div th:if="${param.logout}">
             <div class="alert alert-info" role="alert">
                 Ha cerrado sesión exitosamente
+                <button type="button" class="btn-close btn-clean-login" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
         <div class="mx-4 mt-4 p-3">
@@ -38,5 +40,6 @@
         </div>
     </form>
 </div>
+<script src="../static/js/producto.js" th:src="@{/js/producto.js}"></script>
 </body>
 </html>

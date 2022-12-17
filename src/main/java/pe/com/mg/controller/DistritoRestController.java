@@ -20,7 +20,7 @@ public class DistritoRestController {
     }
     @GetMapping("/custom")
     public List<DistritoEntity>findAllCustom(){
-        return distritoservice.findAllCustom();
+        return distritoservice.findAllCustom(null);
     }
     @GetMapping("/{id}")
     public DistritoEntity findById(@PathVariable long id){

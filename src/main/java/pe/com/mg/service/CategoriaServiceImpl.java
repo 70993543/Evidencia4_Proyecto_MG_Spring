@@ -45,8 +45,11 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public List<CategoriaEntity> findAllCustom() {
-        return categoriarepositorio.findAllCustom();
+    public List<CategoriaEntity> findAllCustom(String palabraclave) {
+        if (palabraclave != null){
+            return categoriarepositorio.findAllCustom(palabraclave);
+        }
+        return categoriarepositorio.findAllCustom(palabraclave);
     }
 
     @Override

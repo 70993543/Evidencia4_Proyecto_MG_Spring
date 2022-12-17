@@ -19,7 +19,7 @@ public class ClienteRestController {
     }
     @GetMapping("/custom")
     public List<ClienteEntity>findAllCustom(){
-        return clienteservice.findAllCustom();
+        return clienteservice.findAllCustom(null);
     }
 
     @GetMapping("/{id}")

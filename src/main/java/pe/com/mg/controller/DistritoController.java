@@ -1,6 +1,7 @@
 package pe.com.mg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,9 @@ public class DistritoController {
     private DistritoService distritoservicio;
 
     @GetMapping("/listardistrito")
-    public String PaginaListarDistrito(Model modelo){
-        modelo.addAttribute("distritos", distritoservicio.findAllCustom());
+    public String PaginaListarDistrito(Model modelo, @Param("palabraclave")String palabraclave){
+        modelo.addAttribute("palabraclave", palabraclave);
+        modelo.addAttribute("distritos", distritoservicio.findAllCustom(palabraclave));
         return "listardistrito";
     }
     @GetMapping("/registrodistrito")

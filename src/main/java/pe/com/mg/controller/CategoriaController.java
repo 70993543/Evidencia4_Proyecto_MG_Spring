@@ -1,6 +1,7 @@
 package pe.com.mg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,9 @@ public class CategoriaController {
     private CategoriaService categoriaservicio;
 
     @GetMapping("/listarcategoria")
-    public String PaginaListarCategoria(Model modelo){
-        modelo.addAttribute("categorias", categoriaservicio.findAllCustom());
+    public String PaginaListarCategoria(Model modelo, @Param("palabraclave") String palabraclave){
+        modelo.addAttribute("palabraclave", palabraclave);
+        modelo.addAttribute("categorias", categoriaservicio.findAllCustom(palabraclave));
         return "listarcategoria";
 
     }

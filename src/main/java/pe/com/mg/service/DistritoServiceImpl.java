@@ -47,8 +47,11 @@ public class DistritoServiceImpl implements DistritoService{
     }
 
     @Override
-    public List<DistritoEntity> findAllCustom() {
-        return distritorepositorio.findAllCustom();
+    public List<DistritoEntity> findAllCustom(String palabraclave) {
+        if (palabraclave != null){
+            return distritorepositorio.findAllCustom(palabraclave);
+        }
+        return distritorepositorio.findAllCustom(palabraclave);
     }
 
     @Override

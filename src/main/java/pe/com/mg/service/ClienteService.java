@@ -10,7 +10,7 @@ public interface ClienteService {
     ClienteEntity add(ClienteEntity c);
     ClienteEntity update(ClienteEntity c);
     ClienteEntity delete(ClienteEntity c);
-    List<ClienteEntity> findAllCustom();
+    List<ClienteEntity> findAllCustom(String palabraclave);
     ClienteEntity enable(ClienteEntity c);
 }
 

@@ -20,7 +20,7 @@ public class CategoriaRestController {
 
     @GetMapping("/custom")
     public List<CategoriaEntity>findAllCustom(){
-        return categoriaservicio.findAllCustom();
+        return categoriaservicio.findAllCustom(null);
     }
 
     @GetMapping("/{id}")

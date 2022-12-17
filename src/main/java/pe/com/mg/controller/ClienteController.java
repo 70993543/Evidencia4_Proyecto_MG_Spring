@@ -1,6 +1,7 @@
 package pe.com.mg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,9 @@ public class ClienteController {
     private DistritoService distritoservicio;
 
     @GetMapping("/listarcliente")
-    public String PaginaListarCliente(Model modelo){
-        modelo.addAttribute("clientes", clienteservicio.findAllCustom());
+    public String PaginaListarCliente(Model modelo, @Param("palabraclave") String palabraclave){
+        modelo.addAttribute("palabraclave", palabraclave);
+        modelo.addAttribute("clientes", clienteservicio.findAllCustom(palabraclave));
         return "listarcliente";
     }
     @GetMapping("/registrocliente")

@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <a th:href="@{/listarproducto}" class="btn btn-secondary mb-2">regresar</a>
+        <a th:href="@{/listarproducto}" class="btn btn-secondary mb-2">Regresar</a>
         <h1>Lista de productos</h1>
         <div class="table-responsive">
             <table class="table align-middle table-bordered">
@@ -31,7 +31,7 @@
                 <th>Acciones</th>
                 </thead>
                 <tbody>
-                <tr th:each="producto : ${productos}">
+                <tr th:each="producto : ${productos}" th:if="${producto.estado != true}">
                     <td th:text="${producto.codigo}"></td>
                     <td th:text="${producto.nombre}"></td>
                     <td th:text="${producto.marca}"></td>

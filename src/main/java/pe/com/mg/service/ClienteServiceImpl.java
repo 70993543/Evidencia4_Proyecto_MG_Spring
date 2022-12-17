@@ -44,8 +44,11 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public List<ClienteEntity> findAllCustom() {
-        return clienterepositorio.findAllCustom();
+    public List<ClienteEntity> findAllCustom(String palabraclave) {
+        if (palabraclave != null){
+            return clienterepositorio.findAllCustom(palabraclave);
+        }
+        return clienterepositorio.findAllCustom(palabraclave);
     }
 
     @Override

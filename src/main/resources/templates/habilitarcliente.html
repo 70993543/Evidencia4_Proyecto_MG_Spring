@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <a th:href="@{/listarcliente}" class="btn btn-secondary mb-2">Retroceder</a>
+        <a th:href="@{/listarcliente}" class="btn btn-secondary mb-2">Regresar</a>
         <h1>Lista de clientes</h1>
         <div class="table-responsive">
             <table class="table align-middle table-bordered">
@@ -33,7 +33,7 @@
                 <th>Acciones</th>
                 </thead>
                 <tbody>
-                <tr th:each="cliente : ${clientes}">
+                <tr th:each="cliente : ${clientes}" th:if="${cliente.estado != true}">
                     <td th:text="${cliente.codigo}"></td>
                     <td th:text="${cliente.nombre}"></td>
                     <td th:text="${cliente.apellido}"></td>
