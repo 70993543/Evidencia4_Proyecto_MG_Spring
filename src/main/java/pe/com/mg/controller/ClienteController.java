@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pe.com.mg.model.ClienteEntity;
-import pe.com.mg.model.DistritoEntity;
-import pe.com.mg.model.ProductoEntity;
 import pe.com.mg.service.ClienteService;
 import pe.com.mg.service.DistritoService;
+import pe.com.mg.util.ClienteExporterExcel;
+import pe.com.mg.util.ClienteExporterPDF;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ClienteController {
@@ -71,6 +78,39 @@ public class ClienteController {
         ClienteEntity objcliente = clienteservicio.findById(id);
         clienteservicio.enable(objcliente);
         return "redirect:/listarcliente?habilito";
+    }
+    @GetMapping("/exportarPDF")
+    public void exportarListadoDeClientesPDF(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Clientes_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera, valor);
+        List<ClienteEntity> clientes = clienteservicio.findAll();
+
+        ClienteExporterPDF exporter = new ClienteExporterPDF(clientes);
+        exporter.exportar(response);
+    }
+
+    @GetMapping("/exportarExcel")
+    public void exportarListadoDeClientesExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Clientes_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera, valor);
+        List<ClienteEntity> clientes = clienteservicio.findAll();
+
+        ClienteExporterExcel exporter = new ClienteExporterExcel(clientes);
+        exporter.exportar(response);
     }
 
 }
