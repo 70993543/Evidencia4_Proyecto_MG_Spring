@@ -7,12 +7,19 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pe.com.mg.model.ClienteEntity;
 import pe.com.mg.model.ProductoEntity;
 import pe.com.mg.service.CategoriaService;
 import pe.com.mg.service.ProductoService;
-import pe.com.mg.util.PageRender;
+import pe.com.mg.util.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.awt.print.Pageable;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ProductoController {
@@ -76,5 +83,37 @@ public class ProductoController {
         productoservicio.enable(objproducto);
         return "redirect:/listarproducto?habilito";
     }
+    @GetMapping("/exportarPDFProducto")
+    public void exportarListadoDeProductosPDF(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
 
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Productos_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera, valor);
+        List<ProductoEntity> productos = productoservicio.findAll();
+
+        ProductoExporterPDF exporter = new ProductoExporterPDF(productos);
+        exporter.exportar(response);
+    }
+
+    @GetMapping("/exportarExcelProducto")
+    public void exportarListadoDeProductosExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Productos_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera, valor);
+        List<ProductoEntity> productos = productoservicio.findAll();
+
+        ProductoExporterExcel exporter = new ProductoExporterExcel(productos);
+        exporter.exportar(response);
+    }
 }

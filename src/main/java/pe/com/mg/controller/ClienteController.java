@@ -79,7 +79,7 @@ public class ClienteController {
         clienteservicio.enable(objcliente);
         return "redirect:/listarcliente?habilito";
     }
-    @GetMapping("/exportarPDF")
+    @GetMapping("/exportarPDFCliente")
     public void exportarListadoDeClientesPDF(HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
 
@@ -96,7 +96,7 @@ public class ClienteController {
         exporter.exportar(response);
     }
 
-    @GetMapping("/exportarExcel")
+    @GetMapping("/exportarExcelCliente")
     public void exportarListadoDeClientesExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
 
