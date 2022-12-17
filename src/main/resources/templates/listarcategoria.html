@@ -26,17 +26,17 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Estado</th>
-                <th>Acciones</th>
+                <th colspan="2" class="text-center">Acciones </th>
                 </thead>
                 <tbody>
                 <tr th:each="categoria : ${categorias}">
                     <td th:text="${categoria.codigo}"></td>
                     <td th:text="${categoria.nombre}"></td>
                     <td th:text="${categoria.estado}? 'Habilitado':'Deshabilitado'"></td>
-                    <td class="d-flex flex-grap justify-content-between">
+                    <td class="text-center">
                         <a class="btn btn-success" th:href="@{/actualizarcategoria/{id}(id=${categoria.codigo})}">Actualizar</a>
-                        <a th:href="@{/eliminarcategoria/{id}(id=${categoria.codigo})}" class="btn btn-danger">Eliminar</a>
                     </td>
+                    <td class="text-center"><a th:href="@{/eliminarcategoria/{id}(id=${categoria.codigo})}" class="btn btn-danger">Eliminar</a></td>
                 </tr>
                 </tbody>
             </table>

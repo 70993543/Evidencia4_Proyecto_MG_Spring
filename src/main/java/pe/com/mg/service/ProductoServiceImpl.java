@@ -16,7 +16,6 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ProductoRepository productorepositorio;
     @Autowired
-    private EmpleadoRepository empleadoRepository;
 
 
     @Override

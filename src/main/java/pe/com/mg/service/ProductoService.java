@@ -11,6 +11,6 @@ public interface ProductoService {
     ProductoEntity add(ProductoEntity p);
     ProductoEntity update(ProductoEntity p);
     ProductoEntity delete(ProductoEntity p);
-    List<ProductoEntity> findAllCustom(String palaabraclave);
+    List<ProductoEntity> findAllCustom(String palabraclave);
     ProductoEntity enable(ProductoEntity p);
 }
