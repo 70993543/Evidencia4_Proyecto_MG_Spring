@@ -19,7 +19,7 @@
             </div>
         </div>
         <div th:if="${param.logout}">
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
                 Ha cerrado sesión exitosamente
                 <button type="button" class="btn-close btn-clean-login" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -36,10 +36,10 @@
             <div class="d-grid">
                 <button class="btn btn-block btn-dark">Sign in</button>
             </div>
-            <p class="text-center mt-2">Not a member? <a class="text-decoration-none" th:href="@{/registroempleado}">Register</a></p>
+<!--            <p class="text-center mt-2">Not a member? <a class="text-decoration-none" th:href="@{/registroempleado}">Register</a></p>-->
         </div>
     </form>
 </div>
-<script src="../static/js/producto.js" th:src="@{/js/producto.js}"></script>
+<script src="../static/js/login.js" th:src="@{/js/login.js}"></script>
 </body>
 </html>
