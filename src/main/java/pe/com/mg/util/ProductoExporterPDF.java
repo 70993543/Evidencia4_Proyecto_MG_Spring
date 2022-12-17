@@ -36,6 +36,8 @@ public class ProductoExporterPDF {
         tabla.addCell(celda);
         celda.setPhrase(new Phrase("Precio", fuente));
         tabla.addCell(celda);
+        celda.setPhrase(new Phrase("Categoria", fuente));
+        tabla.addCell(celda);
     }
     private void escribirDatosDeLaTabla(PdfPTable tabla){
         for (ProductoEntity producto: listaProductos){
@@ -43,6 +45,7 @@ public class ProductoExporterPDF {
             tabla.addCell(producto.getNombre());
             tabla.addCell(producto.getMarca());
             tabla.addCell(String.valueOf(producto.getPrecio()));
+            tabla.addCell(producto.getCategoria().getNombre());
         }
     }
     public void exportar(HttpServletResponse response) throws IOException {
@@ -59,10 +62,10 @@ public class ProductoExporterPDF {
         titulo.setAlignment(Paragraph.ALIGN_CENTER);
         documento.add(titulo);
 
-        PdfPTable tabla = new PdfPTable(4);
+        PdfPTable tabla = new PdfPTable(5);
         tabla.setWidthPercentage(100);
         tabla.setSpacingBefore(15);
-        tabla.setWidths(new float[] {1f, 2.3f, 4f,2.9f});
+        tabla.setWidths(new float[] {1f, 2.3f, 4f,2.9f, 4f});
         tabla.setWidthPercentage(110);
 
         escribirCabeceraDeLaTabla(tabla);

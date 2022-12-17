@@ -50,6 +50,10 @@ public class ProductoExporterExcel {
         celda.setCellValue("Precio");
         celda.setCellStyle(estilo);
 
+        celda = fila.createCell(4);
+        celda.setCellValue("Categoria");
+        celda.setCellStyle(estilo);
+
     }
 
     private void escribirDatosDeLaTabla(){
@@ -81,6 +85,16 @@ public class ProductoExporterExcel {
             celda = fila.createCell(3);
             celda.setCellValue(producto.getPrecio());
             hoja.autoSizeColumn(3);
+            celda.setCellStyle(estilo);
+
+            celda = fila.createCell(3);
+            celda.setCellValue(producto.getPrecio());
+            hoja.autoSizeColumn(3);
+            celda.setCellStyle(estilo);
+
+            celda = fila.createCell(4);
+            celda.setCellValue(producto.getCategoria().getNombre());
+            hoja.autoSizeColumn(4);
             celda.setCellStyle(estilo);
 
         }
