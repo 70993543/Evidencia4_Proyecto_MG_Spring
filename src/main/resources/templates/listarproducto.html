@@ -11,11 +11,32 @@
 <nav th:replace="layout/layout :: nav"></nav>
 
 <div class="row m-4">
-  <div th:if="${param.correcto}">
-    <div class="alert alert-success" role="alert">
-      Se registro correctamente
+    <div th:if="${param.correcto}">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Se registro correctamente
+        <button type="button" class="btn-close btn-clean"  data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    </div>
+    <div th:if="${param.actualizo}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Se actualizó correctamente
+      <button type="button" class="btn-close btn-clean"  data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+  <div th:if="${param.elimino}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Se eliminó correctamente
+      <button type="button" class="btn-close btn-clean" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+  <div th:if="${param.habilito}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Se habilitó correctamente
+      <button type="button" class="btn-close" id="btn-clean" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+
     <div class="col-md-6 d-flex">
       <div class="">
         <a th:href="@{/registroproducto}" class="btn btn-primary mb-2 ml-2">Agregar</a>
@@ -60,7 +81,7 @@
       <div class="table-responsive">
         <table class="table align-middle table-bordered">
           <tr>
-            <td colspan="7" class="text-center h2">LISTA DE CLIENTES</td>
+            <td colspan="7" class="text-center h2">LISTA DE PRODUCTOS</td>
           </tr>
           <tr class="table-dark">
           <th>ID</th>
@@ -72,7 +93,7 @@
           <th>Acciones</th>
           </tr>
           <tbody>
-          <tr th:each="producto : ${productos}">
+          <tr th:each="producto : ${productos}" th:if="${producto.estado != false}">
             <td th:text="${producto.codigo}"></td>
             <td th:text="${producto.nombre}"></td>
             <td th:text="${producto.marca}"></td>
